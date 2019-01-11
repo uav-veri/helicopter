@@ -1,0 +1,27 @@
+%--------------------------------------------------------------------------
+%--------------------------------------------------------------------------
+% File Name: Helicopter_control_enabled_set.tptp
+% Work     : Helicopter control enabled set             
+% Comments : Verifying that all system states are vary and stay within the control enabled set; S(.)={q dot_q. k2*||q||+k1*||dot_q|| <= u_c_max - alpha_2-k1*alpha_1-k2*beta}.
+% Note     : In MetiTarski, the variables should starts with capital letters,therefore: q == Q; \dot{q} == Dot_Q; 
+%--------------------------------------------------------------------------
+%--------------------------------------------------------------------------
+fof(Helicopter_control_enabled_set,conjecture, ! [Q_1,Q_2,Q_3,Dot_Q_1,Dot_Q_2,Dot_Q_3]: 
+%assumptions
+( Q_1  >= 0 & Q_1 <= 1.0271 & Q_2  >= 0 & Q_2 <= 1 
+& Q_3  >= 0 & Q_3 <= 1 
+& Dot_Q_1 >= -0.0735 & Dot_Q_1 <= 0.6993
+& Dot_Q_2 >= 0 & Dot_Q_2 <= 0.5933 & Dot_Q_3 >= -0.2798 & Dot_Q_3 <= 1.33   
+%implies
+=> ( (0.9*sqrt(Q_1^2+Q_2^2+Q_3^2))+(0.135*sqrt(Dot_Q_1^2+Dot_Q_2^2+Dot_Q_3^2)) <= 1.6487 ))).
+
+include('Axioms/general.ax').
+%include('Axioms/sqrt-general.ax').
+include('Axioms/sqrt-lower.ax').
+include('Axioms/sqrt-upper.ax').
+include('Axioms/sqrt-extended.ax').
+include('Axioms/pow.ax').
+%include('Axioms/abs.ax').
+%include('Axioms/sin.ax').
+%include('Axioms/cos.ax').
+
