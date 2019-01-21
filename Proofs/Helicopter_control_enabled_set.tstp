@@ -1,0 +1,117 @@
+%--------------------------------------------------------------------------
+% Proof Results of "Helicopter_control_enabled_set.tptp"
+%--------------------------------------------------------------------------
+
+Z3 version 4.4.2 - 64 bit
+---------------------------------------------------------------------------
+SZS status Theorem for /home/omar/Desktop/Omar - ex/My Problems/Helicopter/Helicopter_control_enabled_set.tptp
+
+SZS output start CNFRefutation for /home/omar/Desktop/Omar - ex/My Problems/Helicopter/Helicopter_control_enabled_set.tptp
+cnf(leq_right_mul_divide_pos, axiom, (Y < X / Z | X <= Y * Z | Z <= 0)).
+
+fof('Helicopter_control_enabled_set', conjecture,
+    (? [Q1, Q2, Q3, Dot_Q1, Dot_Q2, Dot_Q3] :
+       ((0 <= Q1 & Q1 <= 10271/10000 & 0 <= Q2 & Q2 <= 1 & 0 <= Q3 &
+         Q3 <= 1 & -147/2000 <= Dot_Q1 & Dot_Q1 <= 6993/10000 &
+         0 <= Dot_Q2 & Dot_Q2 <= 5933/10000 & -1399/5000 <= Dot_Q3 &
+         Dot_Q3 <= 133/100) =>
+        9/10 * sqrt(Q1 ^ 2 + Q2 ^ 2 + Q3 ^ 2) +
+        27/200 * sqrt(Dot_Q1 ^ 2 + Dot_Q2 ^ 2 + Dot_Q3 ^ 2) <=
+        16487/10000))).
+
+fof(subgoal_0, plain,
+    (? [Q1, Q2, Q3, Dot_Q1, Dot_Q2, Dot_Q3] :
+       ((0 <= Q1 & Q1 <= 10271/10000 & 0 <= Q2 & Q2 <= 1 & 0 <= Q3 &
+         Q3 <= 1 & -147/2000 <= Dot_Q1 & Dot_Q1 <= 6993/10000 &
+         0 <= Dot_Q2 & Dot_Q2 <= 5933/10000 & -1399/5000 <= Dot_Q3 &
+         Dot_Q3 <= 133/100) =>
+        9/10 * sqrt(Q1 ^ 2 + Q2 ^ 2 + Q3 ^ 2) +
+        27/200 * sqrt(Dot_Q1 ^ 2 + Dot_Q2 ^ 2 + Dot_Q3 ^ 2) <=
+        16487/10000)),
+    inference(strip, [], ['Helicopter_control_enabled_set'])).
+
+fof(negate_0_0, plain,
+    (~ ? [Q1, Q2, Q3, Dot_Q1, Dot_Q2, Dot_Q3] :
+         ((0 <= Q1 & Q1 <= 10271/10000 & 0 <= Q2 & Q2 <= 1 & 0 <= Q3 &
+           Q3 <= 1 & -147/2000 <= Dot_Q1 & Dot_Q1 <= 6993/10000 &
+           0 <= Dot_Q2 & Dot_Q2 <= 5933/10000 & -1399/5000 <= Dot_Q3 &
+           Dot_Q3 <= 133/100) =>
+          9/10 * sqrt(Q1 ^ 2 + Q2 ^ 2 + Q3 ^ 2) +
+          27/200 * sqrt(Dot_Q1 ^ 2 + Dot_Q2 ^ 2 + Dot_Q3 ^ 2) <=
+          16487/10000)), inference(negate, [], [subgoal_0])).
+
+fof(normalize_0_0, plain,
+    (! [Dot_Q1] : Dot_Q1 <= 6993/10000 & ! [Dot_Q1] : -147/2000 <= Dot_Q1 &
+     ! [Dot_Q2] : Dot_Q2 <= 5933/10000 & ! [Dot_Q2] : 0 <= Dot_Q2 &
+     ! [Dot_Q3] : Dot_Q3 <= 133/100 & ! [Dot_Q3] : -1399/5000 <= Dot_Q3 &
+     ! [Q1] : Q1 <= 10271/10000 & ! [Q1] : 0 <= Q1 & ! [Q2] : Q2 <= 1 &
+     ! [Q2] : 0 <= Q2 & ! [Q3] : Q3 <= 1 & ! [Q3] : 0 <= Q3 &
+     ! [Dot_Q1, Dot_Q2, Dot_Q3, Q1, Q2, Q3] :
+       16487/10000 <
+       9/10 * sqrt(Q1 ^ 2 + Q2 ^ 2 + Q3 ^ 2) +
+       27/200 * sqrt(Dot_Q1 ^ 2 + Dot_Q2 ^ 2 + Dot_Q3 ^ 2)),
+    inference(canonicalize, [], [negate_0_0])).
+
+fof(normalize_0_1, plain,
+    (! [Dot_Q1, Dot_Q2, Dot_Q3, Q1, Q2, Q3] :
+       16487/10000 <
+       9/10 * sqrt(Q1 ^ 2 + Q2 ^ 2 + Q3 ^ 2) +
+       27/200 * sqrt(Dot_Q1 ^ 2 + Dot_Q2 ^ 2 + Dot_Q3 ^ 2)),
+    inference(conjunct, [], [normalize_0_0])).
+
+fof(normalize_0_2, plain,
+    (! [Dot_Q1, Dot_Q2, Dot_Q3, Q1, Q2, Q3] :
+       16487/10000 <
+       9/10 * sqrt(Q1 ^ 2 + Q2 ^ 2 + Q3 ^ 2) +
+       27/200 * sqrt(Dot_Q1 ^ 2 + Dot_Q2 ^ 2 + Dot_Q3 ^ 2)),
+    inference(specialize, [], [normalize_0_1])).
+
+fof(normalize_0_3, plain, (! [Q2] : Q2 <= 1),
+    inference(conjunct, [], [normalize_0_0])).
+
+fof(normalize_0_4, plain, (! [Q2] : Q2 <= 1),
+    inference(specialize, [], [normalize_0_3])).
+
+cnf(refute_0_0, plain,
+    (16487/10000 <
+     9/10 * sqrt(Q1 ^ 2 + Q2 ^ 2 + Q3 ^ 2) +
+     27/200 * sqrt(Dot_Q1 ^ 2 + Dot_Q2 ^ 2 + Dot_Q3 ^ 2)),
+    inference(canonicalize, [], [normalize_0_2])).
+
+cnf(refute_0_1, plain,
+    (16487/10000 <
+     sqrt(Dot_Q1 * Dot_Q1 + Dot_Q2 * Dot_Q2 + Dot_Q3 * Dot_Q3) * 27/200 +
+     sqrt(Q1 * Q1 + Q2 * Q2 + Q3 * Q3) * 9/10),
+    inference(arithmetic, [], [refute_0_0])).
+
+cnf(refute_0_2, plain, (Q2 <= 1),
+    inference(canonicalize, [], [normalize_0_4])).
+
+cnf(refute_0_3, plain, (X_000044 / X_000046 <= 1),
+    inference(subst, [], [refute_0_2])).
+
+cnf(refute_0_4, plain,
+    (1 < X_000044 / X_000046 | X_000044 <= 1 * X_000046 | X_000046 <= 0),
+    inference(subst, [], [leq_right_mul_divide_pos])).
+
+cnf(refute_0_5, plain, (X_000044 <= 1 * X_000046 | X_000046 <= 0),
+    inference(resolve, [], [refute_0_3, refute_0_4])).
+
+cnf(refute_0_6, plain, (X_000044 <= X_000046 | X_000046 <= 0),
+    inference(arithmetic, [], [refute_0_5])).
+
+cnf(refute_0_7, plain,
+    (16487/10000 <= 0 |
+     sqrt(Dot_Q1 * Dot_Q1 + Dot_Q2 * Dot_Q2 + Dot_Q3 * Dot_Q3) * 27/200 +
+     sqrt(Q1 * Q1 + Q2 * Q2 + Q3 * Q3) * 9/10 <= 16487/10000),
+    inference(subst, [], [refute_0_6])).
+
+cnf(refute_0_8, plain, (16487/10000 <= 0),
+    inference(resolve, [], [refute_0_7, refute_0_1])).
+
+cnf(refute_0_9, plain, ($false), inference(arithmetic, [], [refute_0_8])).
+SZS output end CNFRefutation for /home/omar/Desktop/Omar - ex/My Problems/Helicopter/Helicopter_control_enabled_set.tptp
+
+Processor time: 0.100 = 0.076 (Metis) + 0.024 (RCF)
+Maximum weight in proof search: 310
+

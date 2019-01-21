@@ -1,0 +1,101 @@
+%--------------------------------------------------------------------------
+% Proof Results of "Torque_phi.tptp"
+%--------------------------------------------------------------------------
+
+Z3 version 4.4.2 - 64 bit
+---------------------------------------------------------------------------
+SZS status Theorem for /home/omar/Desktop/Omar - ex/My Problems/Helicopter/Torque_phi.tptp
+
+SZS output start CNFRefutation for /home/omar/Desktop/Omar - ex/My Problems/Helicopter/Torque_phi.tptp
+fof('Torque_phi', conjecture,
+    (? [T_phi, TM, TR, A, B] :
+       ((-7/200 <= T_phi & T_phi <= 367/2500 & TM <= 1357143/10000 &
+         TR <= 12/5 & -1047/5000 <= A & A <= 1047/5000 & -2443/10000 <= B &
+         B <= 2443/10000) =>
+        T_phi <=
+        abs(TM) / sqrt(1 - sin(A) ^ 2 * sin(B) ^ 2) *
+        (1/4 * cos(A) * sin(B))))).
+
+fof(subgoal_0, plain,
+    (? [T_phi, TM, TR, A, B] :
+       ((-7/200 <= T_phi & T_phi <= 367/2500 & TM <= 1357143/10000 &
+         TR <= 12/5 & -1047/5000 <= A & A <= 1047/5000 & -2443/10000 <= B &
+         B <= 2443/10000) =>
+        T_phi <=
+        abs(TM) / sqrt(1 - sin(A) ^ 2 * sin(B) ^ 2) *
+        (1/4 * cos(A) * sin(B)))), inference(strip, [], ['Torque_phi'])).
+
+fof(negate_0_0, plain,
+    (~ ? [T_phi, TM, TR, A, B] :
+         ((-7/200 <= T_phi & T_phi <= 367/2500 & TM <= 1357143/10000 &
+           TR <= 12/5 & -1047/5000 <= A & A <= 1047/5000 &
+           -2443/10000 <= B & B <= 2443/10000) =>
+          T_phi <=
+          abs(TM) / sqrt(1 - sin(A) ^ 2 * sin(B) ^ 2) *
+          (1/4 * cos(A) * sin(B)))), inference(negate, [], [subgoal_0])).
+
+fof(normalize_0_0, plain,
+    (! [A] : A <= 1047/5000 & ! [A] : -1047/5000 <= A &
+     ! [B] : B <= 2443/10000 & ! [B] : -2443/10000 <= B &
+     ! [TM] : TM <= 1357143/10000 & ! [TR] : TR <= 12/5 &
+     ! [T_phi] : T_phi <= 367/2500 & ! [T_phi] : -7/200 <= T_phi &
+     ! [A, B, TM, T_phi] :
+       abs(TM) / sqrt(1 - sin(A) ^ 2 * sin(B) ^ 2) *
+       (1/4 * cos(A) * sin(B)) < T_phi),
+    inference(canonicalize, [], [negate_0_0])).
+
+fof(normalize_0_1, plain, (! [T_phi] : -7/200 <= T_phi),
+    inference(conjunct, [], [normalize_0_0])).
+
+fof(normalize_0_2, plain, (! [T_phi] : -7/200 <= T_phi),
+    inference(specialize, [], [normalize_0_1])).
+
+fof(normalize_0_3, plain,
+    (! [A, B, TM, T_phi] :
+       abs(TM) / sqrt(1 - sin(A) ^ 2 * sin(B) ^ 2) *
+       (1/4 * cos(A) * sin(B)) < T_phi),
+    inference(conjunct, [], [normalize_0_0])).
+
+fof(normalize_0_4, plain,
+    (! [A, B, TM, T_phi] :
+       abs(TM) / sqrt(1 - sin(A) ^ 2 * sin(B) ^ 2) *
+       (1/4 * cos(A) * sin(B)) < T_phi),
+    inference(specialize, [], [normalize_0_3])).
+
+cnf(refute_0_0, plain, (-7/200 <= T_phi),
+    inference(canonicalize, [], [normalize_0_2])).
+
+cnf(refute_0_1, plain,
+    (-7/200 <=
+     abs(X_000021) /
+     sqrt(1 +
+          sin(X_000020) *
+          (sin(X_000020) * (sin(X_000019) * (sin(X_000019) * -1)))) *
+     (sin(X_000020) * (cos(X_000019) * 1/4))),
+    inference(subst, [], [refute_0_0])).
+
+cnf(refute_0_2, plain,
+    (abs(TM) / sqrt(1 - sin(A) ^ 2 * sin(B) ^ 2) *
+     (1/4 * cos(A) * sin(B)) < T_phi),
+    inference(canonicalize, [], [normalize_0_4])).
+
+cnf(refute_0_3, plain,
+    (abs(TM) / sqrt(1 + sin(B) * (sin(B) * (sin(A) * (sin(A) * -1)))) *
+     (sin(B) * (cos(A) * 1/4)) < T_phi),
+    inference(arithmetic, [], [refute_0_2])).
+
+cnf(refute_0_4, plain,
+    (abs(X_000021) /
+     sqrt(1 +
+          sin(X_000020) *
+          (sin(X_000020) * (sin(X_000019) * (sin(X_000019) * -1)))) *
+     (sin(X_000020) * (cos(X_000019) * 1/4)) < -7/200),
+    inference(subst, [], [refute_0_3])).
+
+cnf(refute_0_5, plain, ($false),
+    inference(resolve, [], [refute_0_1, refute_0_4])).
+SZS output end CNFRefutation for /home/omar/Desktop/Omar - ex/My Problems/Helicopter/Torque_phi.tptp
+
+Processor time: 0.076 = 0.052 (Metis) + 0.024 (RCF)
+Maximum weight in proof search: 243
+
