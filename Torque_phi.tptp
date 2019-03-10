@@ -1,0 +1,25 @@
+%--------------------------------------------------------------------------
+%--------------------------------------------------------------------------
+% File Name: Torque_phi.tptp
+% Work     : Helicopter roll torque verification            
+% Comments : Verifying that the produced roll torque from the controller is lower than the upper limit of the maximum torque.
+% Note     : In MetiTarski, all variables should start with capital letters,therefore: \tau_phi==T_phi; a==A;b==B; \ell^y_{M}==Ly_M; \ell^z_{M}==Lz_M; \ell^z_{R}==Lz_R.  
+%--------------------------------------------------------------------------
+%--------------------------------------------------------------------------
+fof(Torque_phi,conjecture, ! [T_phi,TM,TR,A,B,Ly_M,Lz_M,Lz_R]:  
+%assumptions
+(T_phi >= -0.0350 & T_phi <= 0.1468 & TM = 135.7143 & TR = 2.4 
+& A = 0.2094 & B = 0.2443 & Ly_M=0 & Lz_M = -0.25 & Lz_R=0  
+%implies
+=> abs(T_phi) <=   (abs(TM)/sqrt(1-(sin(A)^2*sin(B)^2)))*(-Ly_M*cos(A)*cos(B) - Lz_M*cos(A)*sin(B)) - Lz_R*TR )).
+
+include('Axioms/general.ax').
+include('Axioms/sqrt-lower.ax').
+include('Axioms/sqrt-upper.ax').
+include('Axioms/sqrt-extended.ax').
+include('Axioms/pow.ax').
+include('Axioms/abs.ax').
+include('Axioms/sin.ax').
+include('Axioms/cos.ax').
+
+
